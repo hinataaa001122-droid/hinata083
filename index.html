@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hroot - Official App Landing & Download</title>
+    <style>
+        :root {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-card: #172134;
+            --accent-green: #10b981;
+            --accent-green-hover: #059669;
+            --accent-blue: #3b82f6;
+            --accent-blue-hover: #2563eb;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --border-color: #334155;
+            --card-glow: rgba(16, 185, 129, 0.15);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Header & Navbar */
+        header {
+            background-color: rgba(30, 41, 59, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 700;
+            font-size: 1.4rem;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--accent-green), var(--accent-blue));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            color: white;
+            box-shadow: 0 4px 12px var(--card-glow);
+        }
+
+        .lang-select-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .lang-select-wrapper svg {
+            position: absolute;
+            left: 10px;
+            width: 18px;
+            height: 18px;
+            fill: var(--text-secondary);
+            pointer-events: none;
+        }
+
+        .lang-select {
+            background-color: var(--bg-card);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+            padding: 0.5rem 1rem 0.5rem 2.2rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            outline: none;
+            transition: all 0.2s ease;
+            appearance: none;
+            -webkit-appearance: none;
+        }
+
+        .lang-select:hover, .lang-select:focus {
+            border-color: var(--accent-green);
+        }
+
+        /* Hero Container */
+        main {
+            flex: 1;
+            max-width: 1100px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 3rem 1.5rem;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 2rem 1rem 3rem 1rem;
+        }
+
+        .app-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            color: var(--accent-green);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #ffffff 0%, #94a3b8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            color: var(--text-secondary);
+            font-size: 1.15rem;
+            max-width: 650px;
+            margin: 0 auto 2.5rem auto;
+        }
+
+        /* Buttons Section */
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 1.25rem;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .btn {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 0.9rem 1.8rem;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+        }
+
+        .btn-download {
+            background: linear-gradient(135deg, var(--accent-green), #059669);
+            color: #ffffff;
+            border: none;
+        }
+
+        .btn-download:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+        }
+
+        .btn-apkpure {
+            background-color: var(--bg-card);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-apkpure:hover {
+            background-color: var(--bg-secondary);
+            border-color: var(--accent-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.25);
+        }
+
+        .btn svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        /* Developer Card */
+        .dev-box {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 1.75rem;
+            max-width: 550px;
+            margin: 0 auto 4rem auto;
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dev-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--accent-green), var(--accent-blue));
+        }
+
+        .dev-avatar {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #6366f1, #a855f7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .dev-info h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .dev-info p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+
+        .dev-tag {
+            display: inline-block;
+            background: rgba(59, 130, 246, 0.15);
+            color: var(--accent-blue);
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.2rem 0.6rem;
+            border-radius: 6px;
+            margin-top: 0.4rem;
+        }
+
+        /* App Requirements Grid */
+        .section-title {
+            text-align: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 1.5rem;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(16, 185, 129, 0.5);
+        }
+
+        .card-icon {
+            width: 44px;
+            height: 44px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            color: var(--accent-green);
+        }
+
+        .card h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        /* Security Banner */
+        .security-banner {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(59, 130, 246, 0.1));
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            border-radius: 16px;
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .security-icon {
+            width: 56px;
+            height: 56px;
+            background: var(--accent-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .security-text h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .security-text p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            padding: 2rem;
+            text-align: center;
+            margin-top: auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-green);
+        }
+
+        .copyright {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 2rem; }
+            .btn { width: 100%; justify-content: center; }
+            .security-banner { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="#" class="logo">
+            <div class="logo-icon">H</div>
+            <span>Hroot</span>
+        </a>
+        <div class="lang-select-wrapper">
+            <svg viewBox="0 0 24 24"><path d="M12.87 15.07l-2.54-2.51.03-.03c1.74-1.94 2.98-4.17 3.71-6.53H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2.1l1.1-3h4.6l1.1 3H23l-4.5-12zm-2.62 7l1.62-4.41L19.12 17h-3.24z"/></svg>
+            <select class="lang-select" id="langSelect" onchange="changeLanguage(this.value)">
+                <option value="en" selected>English</option>
+                <option value="tr">Türkçe</option>
+                <option value="es">Español</option>
+                <option value="fr">Français</option>
+                <option value="de">Deutsch</option>
+                <option value="pt">Português</option>
+                <option value="ru">Русский</option>
+                <option value="ja">日本語</option>
+                <option value="zh">中文</option>
+                <option value="ar">العربية</option>
+            </select>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="app-badge">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L1 21h22L12 2zm0 3.99L19.53 19H4.47L12 5.99zM11 16h2v2h-2zm0-6h2v4h-2z"/></svg>
+                Verified Clean & Safe Package
+            </div>
+            <h1 id="heroTitle">Next-Generation Mobile Utility</h1>
+            <p id="heroDesc">Experience unmatched performance, seamless interface customization, and robust system management designed strictly in accordance with modern security standards.</p>
+
+            <div class="btn-group">
+                <!-- DOĞRUDAN APK İNDİRME BUTONU -->
+                <a href="HRoot.apk" download download class="btn btn-download" id="btnDownload">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                    <span>Download APK</span>
+                </a>
+                <!-- APKPURE UYGULAMA SAYFASI BUTONU -->
+                <a href="https://apkpure.com/p/com.hinata.hroot" target="_blank" class="btn btn-apkpure" id="btnApkpure">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h16v16H4V4zm2 2v12h12V6H6zm3 3l6 3-6 3V9z"/></svg>
+                    <span>Get on APKPure</span>
+                </a>
+            </div>
+
+            <!-- Developer Info Box -->
+            <div class="dev-box">
+                <div class="dev-avatar">H</div>
+                <div class="dev-info">
+                    <h3 id="devTitle">Developer: Hinata</h3>
+                    <p id="devDesc">Official release created and maintained by Hinata. Built with high precision, minimal resource overhead, and maximum privacy protections.</p>
+                    <span class="dev-tag">Verified Publisher</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- System Requirements -->
+        <h2 class="section-title" id="reqTitle">App Requirements & Specifications</h2>
+        <div class="grid">
+            <div class="card">
+                <div class="card-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/></svg>
+                </div>
+                <h4 id="req1Title">Operating System</h4>
+                <p id="req1Desc">Android 6.0 (Marshmallow) or higher required for full compatibility.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M20 18c1.1 0 1.99-.9 1.99-2L22 5c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v11c0 1.1.9 2 2 2H0v2h24v-2h-4zM4 5h16v11H4V5z"/></svg>
+                </div>
+                <h4 id="req2Title">Architecture</h4>
+                <p id="req2Desc">Supports ARMv7, ARM64-v8a, x86, and x86_64 CPU structures.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg>
+                </div>
+                <h4 id="req3Title">Storage Space</h4>
+                <p id="req3Desc">Minimum 15 MB free storage required for installation and caching.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/></svg>
+                </div>
+                <h4 id="req4Title">Permissions</h4>
+                <p id="req4Desc">Standard internet access & minimal storage access permissions.</p>
+            </div>
+        </div>
+
+        <!-- Security Banner -->
+        <div class="security-banner">
+            <div class="security-icon">
+                <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+            </div>
+            <div class="security-text">
+                <h3 id="secTitle">Strict Safety & Policy Compliance</h3>
+                <p id="secDesc">This package is thoroughly scanned against malware, spyware, and unauthorized access vectors. Built strictly under official developer guidelines to guarantee safety and integrity.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-links">
+            <a href="https://hinataaa001122-droid.github.io/hroot-privacy/" id="linkPrivacy">Privacy Policy</a>
+            <a href="#" id="linkTerms">Terms of Service</a>
+            <a href="#" id="linkSecurity">Security Verification</a>
+            <a href="#" id="linkContact">Contact Developer</a>
+        </div>
+        <div class="copyright" id="copyrightText">
+            &copy; 2026 Hinata. All rights reserved. Designed with modern dark mode interface aesthetics.
+        </div>
+    </footer>
+
+    <script>
+        const i18n = {
+            en: {
+                heroTitle: "Next-Generation Mobile Utility",
+                heroDesc: "Experience unmatched performance, seamless interface customization, and robust system management designed strictly in accordance with modern security standards.",
+                btnDownload: "Download APK",
+                btnApkpure: "Get on APKPure",
+                devTitle: "Developer: Hinata",
+                devDesc: "Official release created and maintained by Hinata. Built with high precision, minimal resource overhead, and maximum privacy protections.",
+                reqTitle: "App Requirements & Specifications",
+                req1Title: "Operating System", req1Desc: "Android 6.0 (Marshmallow) or higher required for full compatibility.",
+                req2Title: "Architecture", req2Desc: "Supports ARMv7, ARM64-v8a, x86, and x86_64 CPU structures.",
+                req3Title: "Storage Space", req3Desc: "Minimum 15 MB free storage required for installation and caching.",
+                req4Title: "Permissions", req4Desc: "Standard internet access & minimal storage access permissions.",
+                secTitle: "Strict Safety & Policy Compliance",
+                secDesc: "This package is thoroughly scanned against malware, spyware, and unauthorized access vectors. Built strictly under official developer guidelines to guarantee safety and integrity.",
+                linkPrivacy: "Privacy Policy",
+                linkTerms: "Terms of Service",
+                linkSecurity: "Security Verification",
+                linkContact: "Contact Developer",
+                copyrightText: "© 2026 Hinata. All rights reserved. Designed with modern dark mode interface aesthetics."
+            },
+            tr: {
+                heroTitle: "Yeni Nesil Mobil Mobil Uygulama",
+                heroDesc: "Modern güvenlik standartlarına kesinlikle uygun olarak tasarlanmış eşsiz performans, kusursuz arayüz özelleştirmesi ve güçlü sistem yönetimini deneyimleyin.",
+                btnDownload: "APK İndir",
+                btnApkpure: "APKPure'dan Al",
+                devTitle: "Geliştirici: Hinata",
+                devDesc: "Hinata tarafından oluşturulan ve sürdürülen resmi sürüm. Yüksek hassasiyet, minimum kaynak kullanımı ve maksimum gizlilik korumalarıyla oluşturulmuştur.",
+                reqTitle: "Uygulama Gereksinimleri ve Özellikleri",
+                req1Title: "İşletim Sistemi", req1Desc: "Tam uyumluluk için Android 6.0 (Marshmallow) veya üzeri gereklidir.",
+                req2Title: "Mimari", req2Desc: "ARMv7, ARM64-v8a, x86 ve x86_64 CPU mimarilerini destekler.",
+                req3Title: "Depolama Alanı", req3Desc: "Kuru
